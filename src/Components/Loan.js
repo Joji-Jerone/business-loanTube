@@ -6,6 +6,13 @@ const Loan = () => {
   const { data, setData } = useState('');
   const [inp, setInp] = useState([]);
 
+  function handleKeyDown(event) {
+    // Check if the key pressed is a number or backspace
+    if (event.keyCode !== 8 && (!/^[0-9]$/.test(event.key))) {
+      event.preventDefault();
+    }
+  }
+
   return (
     <div>
       <h1>How much would you like to borrow? </h1>
@@ -17,14 +24,11 @@ const Loan = () => {
       value={inp}
       inputMode="numeric"
       required
-      onkeypress={(event) => {
-        if (isNaN(Number(event.key))) {
-          event.preventDefault();
-        }
-      }}
+      onKeyDown={handleKeyDown}
+      
       onChange={(e) => {
-        if (e.target.value.length <= 7 && e.target.value <= 5000000 && e.target.value >= 0) {
-          setInp(e.target.value);
+         if (e.target.value.length <= 7 && e.target.value <= 5000000 && e.target.value >= 0) {
+           setInp(e.target.value);
           setData({
             ...data,
             loanAmount: e.target.value,

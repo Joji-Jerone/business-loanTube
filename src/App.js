@@ -1,4 +1,5 @@
 import './App.css';
+import { BrowserRouter as  Route, Routes , Router } from "react-router-dom";
 import Loan from './Components/Loan';
 import Business from './Components/Business'
 import Businessmanu from './Components/Businessmanu'
@@ -13,7 +14,7 @@ import Terms from './Components/Terms'
 function App() {
   return (
       <div className="App">
-      <h1>Loan Tube</h1>
+      <header>Loan Tube</header>
       <Loan />
       <Business />
       <Businessmanu />
@@ -29,3 +30,15 @@ function App() {
 }
 
 export default App;
+
+
+      //  <Loan />
+      // <Business />
+      // <Businessmanu />
+      // <Mobile />
+      // <Revenue />
+      // <Director />
+      // <Directoraddress />
+      // <Address />
+      // <Email />
+      // <Terms />

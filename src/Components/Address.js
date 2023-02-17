@@ -20,6 +20,8 @@ const Address = () => {
           <option value="test8">test8</option>
           <option value="default">My address isn't listed here</option>
       </select><br />
+      <button>Previous</button>
+      <button>Next</button>
       
       
     </div>

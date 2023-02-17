@@ -28,7 +28,7 @@ const dataModal = {
 }
 
 
-const MainContext = (this.props.first) => {
+const MainContext = (props) => {
 
    const [data, setData] = useState(dataModal);
 

@@ -4,6 +4,15 @@ import { useState } from 'react';
 const Revenue = () => {
   const { data, setData } = useState('');
   const [inp, setInp] = useState([]);
+
+  function handleKeyDown(event) {
+    // Check if the key pressed is a number or backspace
+    if (event.keyCode !== 8 && (!/^[0-9]$/.test(event.key))) {
+      event.preventDefault();
+    }
+  }
+
+
   return (
     <div>
       <h1>How much is total annual revenue/receipts of your business?</h1>
@@ -14,11 +23,7 @@ const Revenue = () => {
       value={inp}
       inputMode="numeric"
       required
-      onkeypress={(e) => {
-        if (isNaN(Number(e.key))) {
-          e.preventDefault();
-        }
-      }}
+      onKeyDown={handleKeyDown}
       onChange={(e) => {
         if (e.target.value.length <= 10 && e.target.value >= 0) {
           setInp(e.target.value);
@@ -42,6 +47,8 @@ const Revenue = () => {
           <option value="50% - 75%">50% - 75%</option>
           <option value="more than 75%">more than 75%</option>
       </select><br />
+      <button>Previous</button>
+      <button>Next</button>
     </div>
   )
 }

@@ -11,9 +11,7 @@ const Business = () => {
       <label>Business name <br/> </label>
       <input
       type = "text" 
-      name = "fullName"
-      
-      >     
+      name = "fullName">     
       </input><br/>
       <button>Previous</button>
       <button>Next</button>

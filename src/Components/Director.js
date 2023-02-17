@@ -28,7 +28,9 @@ const Director = () => {
             </select><br />
       <h1>Your date of birth - DD/MM/YYYY</h1>
       <label>D.O.B</label>
-      <input type="date" id="dob" name="dob"></input>
+      <input type="date" id="dob" name="dob"></input><br />
+      <button>Previous</button>
+      <button>Next</button>
     </div>
   )
 }

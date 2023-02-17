@@ -7,6 +7,12 @@ const Mobile = () => {
   const [inp, setInp] = useState([]);
   const [inp2, setInp2] = useState([]);
 
+  function handleKeyDown(event) {
+    // Check if the key pressed is a number or backspace
+    if (event.keyCode !== 8 && (!/^[0-9]$/.test(event.key))) {
+      event.preventDefault();
+    }
+  }
 
   return (
     <div>
@@ -19,11 +25,7 @@ const Mobile = () => {
       value={inp}
       inputMode="numeric"
       required
-      onkeypress={(e) => {
-        if (isNaN(Number(e.key))) {
-          e.preventDefault();
-        }
-      }}
+      onKeyDown={handleKeyDown}
       onChange={(e) => {
         if (e.target.value.length <= 10 && e.target.value >= 0) {
           setInp(e.target.value);
@@ -41,11 +43,7 @@ const Mobile = () => {
       value={inp2}
       inputMode="numeric"
       required
-      onkeypress={(e) => {
-        if (isNaN(Number(e.key))) {
-          e.preventDefault();
-        }
-      }}
+      onKeyDown={handleKeyDown}
       onChange={(e) => {
         if (e.target.value.length <= 6 && e.target.value >= 0) {
           setInp2(e.target.value);

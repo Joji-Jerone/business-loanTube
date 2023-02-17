@@ -1,24 +1,30 @@
-import logo from './logo.svg';
 import './App.css';
+import Loan from './Components/Loan';
+import Business from './Components/Business'
+import Businessmanu from './Components/Businessmanu'
+import Mobile from './Components/Mobile'
+import Revenue from './Components/Revenue'
+import Address from './Components/Address'
+import Director from './Components/Director'
+import Directoraddress from './Components/Directoraddress';
+import Email from './Components/Email';
+import Terms from './Components/Terms'
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+      <div className="App">
+      <h1>Loan Tube</h1>
+      <Loan />
+      <Business />
+      <Businessmanu />
+      <Mobile />
+      <Revenue />
+      <Director />
+      <Directoraddress />
+      <Address />
+      <Email />
+      <Terms />
+      </div>
   );
 }
 

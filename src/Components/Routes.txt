@@ -1,0 +1,17 @@
+
+
+
+import { Routes, Route } from 'react-router-dom' ;
+
+<Routes>
+      <Route path="/" exact element={<Loan />}></Route>
+
+      {/* <Route path="/Business" element={<Business />}></Route>
+      <Route path="/Businessmanu" element={<Businessmanu />}></Route>
+      <Route path="/Mobile" element={<Mobile />}></Route>
+      <Route path="/Revenue" element={<Revenue />}></Route>
+      <Route path="/Director" element={<Director />}></Route>
+      <Route path="/Address" element={<Address />}></Route>
+      <Route path="/Email" element={<Email />}></Route>
+      <Route path="/Terms" element={<Terms />}></Route> */}
+    </Routes>

@@ -1,10 +1,22 @@
 import React from 'react'
-import { useState } from 'react';
+import { useState , useContext} from 'react';
+import { multiStepContext } from './StepContext'
 
 const Businessmanu = () => {
-  const { data, setData } = useState('');
+
+  const {setStep , data , setData} = useContext(multiStepContext)
   const [inp, setInp] = useState([]);
 
+  const handleKeyPress = (e) => {
+    const re = /^[a-zA-Z\s-.]*$/;
+    if (!re.test(e.key)) {
+      e.preventDefault();
+    }
+  };
+
+  const handleChange = (event) => {
+    setData(event.target.value);
+  };
 
   return (
     <div>
@@ -14,18 +26,10 @@ const Businessmanu = () => {
       <input
       id="standard-adornment-amount"
       type="text"
-      value={inp}
+      name = "Business Name"
       required   
-      onChange={(e) => {
-        if (e.target.value.length <= 7 && e.target.value <= 5000000 && e.target.value >= 0) {
-          setInp(e.target.value);
-         setData({
-           ...data,
-           loanAmount: e.target.value,
-         });
-       }
-     }}
-       
+      onKeyDown={handleKeyPress}
+      onChange={handleChange}
       ></input><br/>
       <label>What is your business type?</label> <br/>
       <select>
@@ -42,8 +46,8 @@ const Businessmanu = () => {
           <option value="2-3">2 - 3 years</option>
           <option value="3">More than 3 years</option>
       </select><br />
-      <button>Previous</button>
-      <button>Next</button>
+      <button onClick={()=>setStep(2)}>Previous</button>
+      <button type='submit' onClick={()=>setStep(4)}>Next</button>
       </form>
     </div>
   )

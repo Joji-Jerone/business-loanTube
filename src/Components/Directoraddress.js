@@ -1,9 +1,9 @@
-import React from 'react'
-import { useState } from 'react';
+import React ,{ useState , useContext} from 'react';
+import { multiStepContext } from './StepContext'
 
 const Directoraddress = () => {
 
-  const { data, setData } = useState('');
+  const {setStep , data , setData} = useContext(multiStepContext)
   const [inp, setInp] = useState([]);
 
   function handleKeyDown(event) {
@@ -13,12 +13,29 @@ const Directoraddress = () => {
     }
   }
 
+  const handleKeyPress = (e) => {
+    const re = /^[a-zA-Z\s-.]*$/;
+    if (!re.test(e.key)) {
+      e.preventDefault();
+    }
+  };
+
+  const handleChange = (event) => {
+    setData(event.target.value);
+  };
+
+  
+
   return (
     <div>
       <h1>
       What is your residential address?
       </h1>
-      <input></input>
+      <input
+      type = "text" 
+      name = "Business Name"
+      onKeyDown={handleKeyPress}
+      onChange={handleChange}></input>
       <h1>Are you a homeowner?</h1>
          <select>
             <option value="yes, with a mortgage">Yes, with a mortgage</option>
@@ -44,8 +61,8 @@ const Directoraddress = () => {
              });
            }
          }}></input><br />
-        <button>Previous</button>
-        <button>Next</button>
+        <button onClick={()=>setStep(6)} >Previous</button>
+        <button onClick={()=>setStep(8)} >Next</button>
     </div>
     
   )

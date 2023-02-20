@@ -1,9 +1,10 @@
-import React from 'react'
+import React , {useContext} from 'react'
 import { useState } from 'react';
+import { multiStepContext } from './StepContext';
 
 const Loan = () => {
 
-  const { data, setData } = useState('');
+  const {setStep , data , setData} = useContext(multiStepContext)
   const [inp, setInp] = useState([]);
 
   function handleKeyDown(event) {
@@ -47,7 +48,7 @@ const Loan = () => {
           <option value="Existing Loan Refinance">Existing Loan Refinance</option>
           <option value="Other Purposes">Other Purposes</option>
       </select><br />
-      <button>Next</button>
+      <button onClick={()=>setStep(2)}>Next</button>
       </form>
     </div>
   )

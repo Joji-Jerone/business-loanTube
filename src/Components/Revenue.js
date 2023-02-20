@@ -1,8 +1,9 @@
-import React from 'react'
-import { useState } from 'react';
+import React ,{ useState , useContext} from 'react';
+import { multiStepContext } from './StepContext'
 
 const Revenue = () => {
-  const { data, setData } = useState('');
+
+  const {setStep , data , setData} = useContext(multiStepContext)
   const [inp, setInp] = useState([]);
 
   function handleKeyDown(event) {
@@ -47,8 +48,8 @@ const Revenue = () => {
           <option value="50% - 75%">50% - 75%</option>
           <option value="more than 75%">more than 75%</option>
       </select><br />
-      <button>Previous</button>
-      <button>Next</button>
+      <button onClick={()=>setStep(4)}>Previous</button>
+      <button onClick={()=>setStep(6)}>Next</button>
     </div>
   )
 }

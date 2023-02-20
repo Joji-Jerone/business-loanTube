@@ -1,6 +1,9 @@
-import React from 'react'
+import React ,{ useState , useContext} from 'react';
+import { multiStepContext } from './StepContext'
 
 const Address = () => {
+  const {setStep , data , setData} = useContext(multiStepContext)
+
   return (
     <div>
       <h1>Does your business send invoices to customers?</h1>
@@ -20,8 +23,8 @@ const Address = () => {
           <option value="test8">test8</option>
           <option value="default">My address isn't listed here</option>
       </select><br />
-      <button>Previous</button>
-      <button>Next</button>
+      <button onClick={()=>setStep(7)}>Previous</button>
+      <button onClick={()=>setStep(9)}>Next</button>
       
       
     </div>

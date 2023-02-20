@@ -1,9 +1,9 @@
-import React from 'react'
-import { useState } from 'react';
+import React ,{ useState , useContext} from 'react';
+import { multiStepContext } from './StepContext'
 
 const Mobile = () => {
 
-  const { data, setData } = useState('');
+  const {setStep , data , setData} = useContext(multiStepContext)
   const [inp, setInp] = useState([]);
   const [inp2, setInp2] = useState([]);
 
@@ -36,6 +36,9 @@ const Mobile = () => {
         }
       }}></input><br />
 
+      <button onClick={()=>setStep(8)}>Previous</button> <br />
+      <button >Next</button>
+
       <label> 4-digit code | Please enter the code sent to +44 7760 628710 |</label><br />
       <input
       id="standard-adornment-amount"
@@ -54,8 +57,8 @@ const Mobile = () => {
         }
       }}
       ></input><br />
-      <button>Previous</button>
-      <button>Next</button>
+      <button onClick={()=>setStep(3)}>Previous</button>
+      <button onClick={()=>setStep(5)}>Next</button>
       </form>
     </div>
   )

@@ -1,6 +1,21 @@
-import React from 'react'
+import React ,{ useState , useContext} from 'react';
+import { multiStepContext } from './StepContext'
 
 const Director = () => {
+
+  const {setStep , data , setData} = useContext(multiStepContext)
+
+  const handleKeyPress = (e) => {
+    const re = /^[a-zA-Z\s-.]*$/;
+    if (!re.test(e.key)) {
+      e.preventDefault();
+    }
+  };
+
+  const handleChange = (event) => {
+    setData(event.target.value);
+  };
+
   return (
     <div>
       <h1>Which director are you?</h1>
@@ -17,8 +32,16 @@ const Director = () => {
       </select><br />
 
       <h1>Your name:</h1>
-      <input></input>
-      <input></input>
+      <input
+      type = "text" 
+      name = "First Name"
+      onKeyDown={handleKeyPress}
+      onChange={handleChange}></input>
+      <input
+      type = "text" 
+      name = "Last Name"
+      onKeyDown={handleKeyPress}
+      onChange={handleChange}></input>
 
       <h1>What is your job position in the business?</h1>
          <select>
@@ -29,8 +52,8 @@ const Director = () => {
       <h1>Your date of birth - DD/MM/YYYY</h1>
       <label>D.O.B</label>
       <input type="date" id="dob" name="dob"></input><br />
-      <button>Previous</button>
-      <button>Next</button>
+      <button onClick={()=>setStep(5)} >Previous</button>
+      <button onClick={()=>setStep(7)} >Next</button>
     </div>
   )
 }

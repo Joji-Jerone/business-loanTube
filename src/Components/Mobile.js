@@ -5,7 +5,6 @@ const Mobile = () => {
 
   const {setStep , data , setData} = useContext(multiStepContext)
   const [inp, setInp] = useState([]);
-  const [inp2, setInp2] = useState([]);
 
   function handleKeyDown(event) {
     // Check if the key pressed is a number or backspace
@@ -14,9 +13,19 @@ const Mobile = () => {
     }
   }
 
+  const handleSubmit = (event) => {
+    if(inp.startsWith("07")){
+        setStep(6)
+    }
+    else {
+      event.preventDefault()
+      alert("Enter a valid number starting with 07 and has 10 digits")
+    }
+  }
+
   return (
     <div>
-      <form>
+      <form onSubmit = {handleSubmit}>
       <h1>Mobile number</h1>
       <label>Your mobile number</label><br />
       <input
@@ -36,29 +45,8 @@ const Mobile = () => {
         }
       }}></input><br />
 
-      <button onClick={()=>setStep(8)}>Previous</button> <br />
-      <button >Next</button>
-
-      <label> 4-digit code | Please enter the code sent to +44 7760 628710 |</label><br />
-      <input
-      id="standard-adornment-amount"
-      type="number"
-      value={inp2}
-      inputMode="numeric"
-      required
-      onKeyDown={handleKeyDown}
-      onChange={(e) => {
-        if (e.target.value.length <= 6 && e.target.value >= 0) {
-          setInp2(e.target.value);
-          setData({
-            ...data,
-            otp: e.target.value,
-          });
-        }
-      }}
-      ></input><br />
       <button onClick={()=>setStep(3)}>Previous</button>
-      <button onClick={()=>setStep(5)}>Next</button>
+      <button >Next</button> <br />
       </form>
     </div>
   )

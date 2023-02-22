@@ -1,10 +1,13 @@
 import React ,{ useState , useContext} from 'react';
-import { multiStepContext } from './StepContext'
+import { multiStepContext } from './StepContext';
 
-const Directoraddress = () => {
+
+const DirectorAddress = () => {
 
   const {setStep , data , setData} = useContext(multiStepContext)
   const [inp, setInp] = useState([]);
+
+  
 
   function handleKeyDown(event) {
     // Check if the key pressed is a number or backspace
@@ -23,49 +26,32 @@ const Directoraddress = () => {
   const handleChange = (event) => {
     setData(event.target.value);
   };
-
   
+  // const handleSelect = (e) => {
+  //   if(value === "yes, with a mortgage" || value ==="yes, without a mortgage" ){
+  //   }
+  // }
 
   return (
     <div>
+      <form onSubmit={()=>setStep(16)}>
       <h1>
       What is your residential address?
       </h1>
       <input
       type = "text" 
       name = "Business Name"
+      required
       onKeyDown={handleKeyPress}
       onChange={handleChange}></input>
-      <h1>Are you a homeowner?</h1>
-         <select>
-            <option value="yes, with a mortgage">Yes, with a mortgage</option>
-            <option value="yes, without a mortgage">Yes, without a mortgage</option>
-            <option value="no">No</option>
-         </select><br />
 
-      <h1>What is the current value of your property?</h1>
-         <label>Property Value </label>
-         <input
-         id="standard-adornment-amount"
-         type="number"
-         value={inp}
-         inputMode="numeric"
-         required
-         onKeyDown={handleKeyDown}
-         onChange={(e) => {
-           if (e.target.value.length <= 10 && e.target.value >= 0) {
-             setInp(e.target.value);
-             setData({
-               ...data,
-               propvalue: e.target.value,
-             });
-           }
-         }}></input><br />
-        <button onClick={()=>setStep(6)} >Previous</button>
-        <button onClick={()=>setStep(8)} >Next</button>
+      <br />
+        <button onClick={()=>setStep(11)} >Previous</button>
+        <button type='submit' >Next</button>
+        </form>
     </div>
-    
   )
 }
 
-export default Directoraddress
+export default DirectorAddress
+

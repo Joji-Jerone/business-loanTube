@@ -1,17 +1,16 @@
 import React ,{ useState , useContext} from 'react';
 import { multiStepContext } from './StepContext'
 
-const Address = () => {
+import 'react-datepicker/dist/react-datepicker.css';
+
+const DirectorName = () => {
+
   const {setStep , data , setData} = useContext(multiStepContext)
 
   return (
     <div>
-      <h1>Does your business send invoices to customers?</h1>
-         <select>
-            <option value="yes">Yes</option>
-            <option value="no">No</option>
-         </select><br />
-      <h1>What is your business trading address?</h1>
+      <form onSubmit={()=>setStep(12)}>
+      <h1>Which director are you?</h1>
       <select>
           <option value="test1<">test1</option>
           <option value="test2">test2</option>
@@ -21,14 +20,14 @@ const Address = () => {
           <option value="test6">test6</option>
           <option value="test7<">test7</option>
           <option value="test8">test8</option>
-          <option value="default">My address isn't listed here</option>
+          <option value="default">I'm not one of these people</option>
       </select><br />
-      <button onClick={()=>setStep(7)}>Previous</button>
-      <button onClick={()=>setStep(9)}>Next</button>
-      
-      
+
+      <button onClick={()=>setStep(10)} >Previous</button>
+      <button type='submit' >Next</button>
+      </form>
     </div>
   )
 }
 
-export default Address
+export default DirectorName

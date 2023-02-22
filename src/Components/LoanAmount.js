@@ -2,7 +2,7 @@ import React , {useContext} from 'react'
 import { useState } from 'react';
 import { multiStepContext } from './StepContext';
 
-const Loan = () => {
+const LoanAmount = () => {
 
   const {setStep , data , setData} = useContext(multiStepContext)
   const [inp, setInp] = useState([]);
@@ -14,10 +14,21 @@ const Loan = () => {
     }
   }
 
+  const submitHandler = (e) =>{
+    if(inp >= 5000){
+      setStep(2)  
+    }
+    else {
+      e.preventDefault()
+      alert("Enter amount between £5,000 and £5,000,000")
+    }
+  }
+
   return (
     <div>
       <h1>How much would you like to borrow? </h1>
-      <form>
+      <form 
+      onSubmit = {submitHandler} >
       <label>Loan amount <br/> </label>
       <input
       id="standard-adornment-amount"
@@ -38,20 +49,12 @@ const Loan = () => {
       }}
       >
       </input><br />
-      <h1>What do you need this loan for?</h1>
-      <select>
-          <option value="Business Growth%">Business Growth%</option>
-          <option value="Additional Cashflow">Additional Cashflow</option>
-          <option value="Stock & Inventory Purchase">Stock & Inventory Purchase</option>
-          <option value="Plant & Machinery Purchase">Plant & Machinery Purchase</option>
-          <option value="Vehicle Purchase">Vehicle Purchase</option>
-          <option value="Existing Loan Refinance">Existing Loan Refinance</option>
-          <option value="Other Purposes">Other Purposes</option>
-      </select><br />
-      <button onClick={()=>setStep(2)}>Next</button>
+      <button> Previous </button>
+      <button 
+      type='submit' >Next</button>
       </form>
     </div>
   )
 }
 
-export default Loan
+export default LoanAmount

@@ -1,38 +1,79 @@
 import React ,{ useState , useContext} from 'react';
 import { multiStepContext } from './StepContext'
-
-import 'react-datepicker/dist/react-datepicker.css';
+import axios from 'axios'
 
 const DirectorName = () => {
 
   const {setStep , data , setData} = useContext(multiStepContext)
-  const handleSelectChange = (e) => {
+
+  const [data1, setData1] = useState([])
+
+  async function dropDown(value) {
+    if (value === '') {
+      setData1([])
+    } else {
+      const res = await axios.get(`https://9x2o8zyo78.execute-api.eu-west-2.amazonaws.com?cid=${value}`)
+      
+      setData1([...res.data.active_directors, {name : "My name isn't listed here"}])
+    }
+  } 
+
+  function setter(name) {
+    //setVal(name)
+    setData1([])
     setData({
-       ...data,
-       DirectorName: e.target.value,
-     });
- };
+      ...data,
+      DirectorName: name,
+    });
+  }
+
+  function changeHandler(e) {
+    //setVal(e.target.value)
+    dropDown(e.target.value)
+    setData({
+      ...data,
+      DirectorName: e.target.value,
+    });
+  }
+
+  const handleKeyPress = (e) => {
+    const re = /^[a-zA-Z\s-.]*$/;
+    if (!re.test(e.key)) {
+      e.preventDefault();
+    }
+  };
 
  const handleSubmit = () => {
-  if(data.DirectorName === "default"){
+  if(data.DirectorName === "My name isn't listed here"){ 
     setStep(12)
   }else{
     setStep(14)
   }
- }
+ } 
 
   return (
     <div>
-      <form onSubmit={handleSubmit}>
       <h1>Which director are you?</h1>
-      <select value = {data.DirectorName}onChange={handleSelectChange} required>
-          <option value="">-- Select an option --</option>
-          <option value="test1<">test1</option>
-          <option value="default">I'm not one of these people</option>
-      </select><br />
-
-      <button onClick={()=>setStep(10)} >Previous</button>
-      <button type='submit' >Next</button>
+      <form onSubmit = {handleSubmit}>
+      <label>Director name <br/> 
+      </label>
+      <div className="container">
+      <label>if you can't find your name kindly select - " My business isn't listed here "</label><br></br>
+        <input type="text" onChange={changeHandler} 
+        onKeyDown={handleKeyPress} 
+        value={data.DirectorName}
+        p/>
+        <div className="suggestion">
+          {data1 && data1.map(e => {
+            return <div className="list" key={e.id} onClick={() => setter(e.name)}>
+              <p className="title">{e.name}</p>
+              {e.id && <p className="address">{e.id} | {e.address}</p>}
+            </div>
+          })}
+        </div>
+      </div>
+      <button onClick={()=>setStep(2)}>Previous</button>
+      <button type='submit'>Next</button>
       </form>
     </div>
   )

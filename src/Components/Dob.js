@@ -1,6 +1,7 @@
 import React ,{ useState , useContext} from 'react'
 import { multiStepContext } from './StepContext'
 import DatePicker from 'react-datepicker';
+import 'react-datepicker/dist/react-datepicker.css';
 
 const Dob = () => {
 
@@ -16,10 +17,8 @@ const Dob = () => {
     }
     return false;
   }
-  
-    const [selectedDate, setSelectedDate] = useState(null);
 
-    
+    const [selectedDate, setSelectedDate] = useState(null);
 
   return (
     <div>
@@ -29,11 +28,7 @@ const Dob = () => {
 
       <DatePicker
       selected={selectedDate}
-      onChange={date => {setSelectedDate(date) 
-        setData({
-        ...data,
-        dob: {date}
-      })}}
+      onChange={date => setSelectedDate(date)}
       dateFormat="dd/MM/yyyy"
       peekNextMonth
       showMonthDropdown

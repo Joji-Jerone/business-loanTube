@@ -15,12 +15,11 @@ const BusinessType = () => {
     <div>
       <form onSubmit={()=>setStep(42)}>
       <h1>What is your business type?</h1> <br/>
-      <select value={data} onChange={handleSelectChange} required>
+      <select value={data.businesstype} onChange={handleSelectChange} required>
           <option value="">-- Select an option --</option>
           <option value="sole">Sole Trader</option>
-          <option value="2">2 years</option>
-          <option value="2-3">2 - 3 years</option>
-          <option value="3">More than 3 years</option>
+          <option value="limited">Limited Company</option>
+          <option value="partnership">Partnership</option>
       </select><br />
       <button onClick={()=>setStep(3)} >Previous</button>
       <button type='submit'>Next</button>

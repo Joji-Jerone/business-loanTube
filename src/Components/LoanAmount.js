@@ -5,7 +5,6 @@ import { multiStepContext } from './StepContext';
 const LoanAmount = () => {
 
   const {setStep , data , setData} = useContext(multiStepContext)
-  const [inp, setInp] = useState([]);
 
   function handleKeyDown(event) {
     // Check if the key pressed is a number or backspace
@@ -15,7 +14,7 @@ const LoanAmount = () => {
   }
 
   const submitHandler = (e) =>{
-    if(inp >= 5000){
+    if(data.loanAmount >= 5000){
       setStep(2)  
     }
     else {
@@ -33,14 +32,13 @@ const LoanAmount = () => {
       <input
       id="standard-adornment-amount"
       type="number"
-      value={inp}
+      value={data.loanAmount}
       inputMode="numeric"
       required
       onKeyDown={handleKeyDown}
       
       onChange={(e) => {
          if (e.target.value.length <= 7 && e.target.value <= 5000000 && e.target.value >= 0) {
-           setInp(e.target.value);
           setData({
             ...data,
             loanAmount: e.target.value,

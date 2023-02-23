@@ -6,15 +6,30 @@ import { multiStepContext } from './StepContext';
 const ResidentialStatus = () => {
 
   const {setStep , data , setData} = useContext(multiStepContext)
-  const [inp, setInp] = useState([]);
+
+  const handleSelectChange = (e) => {
+    setData({
+       ...data,
+       ResidentialStatus: e.target.value,
+     });
+ };
+
+ const handleSubmit = () => {
+  if(data.ResidentialStatus === "withmortage" || data.ResidentialStatus === "withoutmortage" ){
+    setStep(18)
+  }else{
+    setStep(19)
+  }
+ }
 
   return (
     <div>
-      <form onSubmit={()=>setStep(18)}>
+      <form onSubmit={handleSubmit}>
       <h1>Are you a homeowner?</h1>
-         <select required>
-            <option value="yes, with a mortgage">Yes, with a mortgage</option>
-            <option value="yes, without a mortgage">Yes, without a mortgage</option>
+         <select  value={data.ResidentialStatus} onChange={handleSelectChange} required>
+         <option value="">-- Select an option --</option>
+          <option value="withmortage">Yes, with a mortgage</option>
+          <option value="withoutmortage">Yes, without a mortgage</option>
             <option value="no">No</option>
          </select><br />
          <button onClick={()=>setStep(15)} >Previous</button>

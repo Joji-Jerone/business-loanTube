@@ -19,6 +19,8 @@ const Dob = () => {
   
     const [selectedDate, setSelectedDate] = useState(null);
 
+    
+
   return (
     <div>
       <form onSubmit={()=>setStep(15)}>
@@ -27,7 +29,11 @@ const Dob = () => {
 
       <DatePicker
       selected={selectedDate}
-      onChange={date => setSelectedDate(date)}
+      onChange={date => {setSelectedDate(date) 
+        setData({
+        ...data,
+        dob: {date}
+      })}}
       dateFormat="dd/MM/yyyy"
       peekNextMonth
       showMonthDropdown

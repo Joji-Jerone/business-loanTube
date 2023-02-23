@@ -4,20 +4,19 @@ import { multiStepContext } from './StepContext'
 const CardSales = () => {
 
   const {setStep , data , setData} = useContext(multiStepContext)
-  const [inp, setInp] = useState([]);
 
   const handleSelectChange = (e) => {
     setData({
        ...data,
-       businesstype: e.target.value,
+       CardSales: e.target.value,
      });
  };
 
   return (
     <div>
-      <form onSubmit={()=>setStep(10)}>
+      <form onSubmit={()=>setStep(9)}>
       <h1>How much of your business sales come from card payments?</h1>
-      <select value={data} onChange={handleSelectChange} required>
+      <select value={data.CardSales} onChange={handleSelectChange} required>
           <option value="">-- Select an option --</option>
           <option value="0">0%</option>
           <option value="up to 25%">up to 25%</option>

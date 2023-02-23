@@ -12,8 +12,18 @@ const DirectorNameManual = () => {
     }
   };
 
-  const handleChange = (event) => {
-    setData(event.target.value);
+  const handleChange1 = (e) => {
+    setData({
+      ...data,
+      DirectorFirstName: e.target.value,
+    });
+  };
+
+  const handleChange2 = (e) => {
+    setData({
+      ...data,
+      DirectorLastName: e.target.value,
+    });
   };
 
   return (
@@ -24,15 +34,17 @@ const DirectorNameManual = () => {
       <input
       type = "text" 
       name = "First Name"
+      value={data.DirectorFirstName}
       required
       onKeyDown={handleKeyPress}
-      onChange={handleChange}></input><br />
+      onChange={handleChange1}></input><br />
       <input
       type = "text" 
       name = "Last Name"
+      value={data.DirectorLastName}
       required
       onKeyDown={handleKeyPress}
-      onChange={handleChange}></input><br />
+      onChange={handleChange2}></input><br />
       <button onClick={()=>setStep(11)} >Previous</button>
       <button type='submit' >Next</button>
       </form>

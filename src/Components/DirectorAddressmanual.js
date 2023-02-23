@@ -4,11 +4,6 @@ import { multiStepContext } from './StepContext'
 const DirectorAddressmanual = () => {
 
       const {setStep , data , setData} = useContext(multiStepContext)
-   const [inp, setInp] = useState([]);
-   const [inp2, setInp2] = useState([]);
-   const [inp3, setInp3] = useState([]);
-   const [inp4, setInp4] = useState([]);
-   const [inp5, setInp5] = useState([]);
 
    function handleKeyDown(event) {
       // Check if the key pressed is a number or backspace
@@ -25,13 +20,12 @@ const DirectorAddressmanual = () => {
               id="standard-adornment-amount" 
               type="number" 
               onKeyDown={handleKeyDown}
-              value={inp}
+              value={data.DirectorPostcode}
               onChange={(e) => {
                 if (e.target.value >= 0 && e.target.value.length <= 6 ) {
-                  setInp(e.target.value);
                   setData({
                     ...data,
-                    postcode: e.target.value,
+                    DirectorPostcode: e.target.value,
                   });
                 }
               }}
@@ -44,13 +38,12 @@ const DirectorAddressmanual = () => {
               label="House Number"
               variant="standard"
               onKeyDown={handleKeyDown}
-              value={inp2}
+              value={data.Directorhouseno}
               onChange={(e) => {
                 if (e.target.value.length <= 4 && e.target.value >= 0 ) {
-                  setInp2(e.target.value);
                   setData({
                     ...data,
-                    houseno: e.target.value,
+                    Directorhouseno: e.target.value,
                   });
                 }
               }}
@@ -62,13 +55,12 @@ const DirectorAddressmanual = () => {
               label="Flat Number (Optional)"
               variant="standard"
               onKeyDown={handleKeyDown}
-              value={inp3}
+              value={data.Directorflatno}
               onChange={(e) => {
                 if (e.target.value.length <= 4 && e.target.value >= 0) {
-                  setInp3(e.target.value);
                   setData({
                     ...data,
-                    flatno: e.target.value,
+                    Directorflatno: e.target.value,
                   });
                 }
               }}
@@ -79,27 +71,63 @@ const DirectorAddressmanual = () => {
               label="House Name (Optional)"
               variant="standard"
               placeholder='House Name (Optional)'
+              value={data.DirectorHouseName}
+              onChange={(e) => {
+                if (e.target.value.length <= 4 && e.target.value >= 0) {
+                  setData({
+                    ...data,
+                    DirectorHouseName: e.target.value,
+                  });
+                }
+              }}
             /> <br />
             <input
               id="standard-basic"
               label="Street"
               variant="standard"
               placeholder='Street'
+              value={data.DirectorStreet}
               required
+              onChange={(e) => {
+                if (e.target.value.length <= 4 && e.target.value >= 0) {
+                  setData({
+                    ...data,
+                    DirectorStreet: e.target.value,
+                  });
+                }
+              }}
             /> <br />
             <input
               id="standard-basic"
               label="Country/District"
               variant="standard"
               placeholder = 'Country/District'
+              value={data.DirectorCountry}
               required
+              onChange={(e) => {
+                if (e.target.value.length <= 4 && e.target.value >= 0) {
+                  setData({
+                    ...data,
+                    DirectorCountry: e.target.value,
+                  });
+                }
+              }}
             /> <br />
             <input
               id="standard-basic"
               label="City"
               variant="standard"
               placeholder = 'City'
+              value={data.DirectorCity}
               required
+              onChange={(e) => {
+                if (e.target.value.length <= 4 && e.target.value >= 0) {
+                  setData({
+                    ...data,
+                    DirectorCity: e.target.value,
+                  });
+                }
+              }}
             /> <br />
             <label mt={4} variant="subtitle1">
               Time At This Adress *
@@ -111,13 +139,12 @@ const DirectorAddressmanual = () => {
               variant="standard"
               placeholder="Years"
               onKeyDown={handleKeyDown}
-              value={inp4}
+              value={data.DirectorYears}
               onChange={(e) => {
                 if (e.target.value.length <= 2 && e.target.value < 50 && e.target.value >= 0) {
-                  setInp4(e.target.value);
                   setData({
                     ...data,
-                    houseno: e.target.value,
+                    DirectorYears: e.target.value,
                   });
                 }
               }}
@@ -128,14 +155,13 @@ const DirectorAddressmanual = () => {
               id="standard-basic"
               label="Months"
               variant="standard"
-              value={inp5}
+              value={data.DirectorMonths}
               onKeyDown={handleKeyDown}
               onChange={(e) => {
                 if (e.target.value.length <= 2 && e.target.value <= 11 && e.target.value >= 0) {
-                  setInp5(e.target.value);
                   setData({
                     ...data,
-                    houseno: e.target.value,
+                    DirectorMonths: e.target.value,
                   });
                 }
               }}

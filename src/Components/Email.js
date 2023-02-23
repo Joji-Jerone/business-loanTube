@@ -26,7 +26,7 @@ const Email = () => {
          3. you confirm you understand that the information you have provided will be shared with our panel of providers & partners who will use it to see if you are eligible for a loan. This will involve a soft search being carried out upon you, your business and other directors/partners of the business. This will not affect your credit rating and will only be visible to you.<br />
          </p> 
       </p>
-      <button onClick={()=>setStep(18)}>Previous</button>
+      <button onClick={()=>setStep(17)}>Previous</button>
       <button type='submit'>Find your loan</button>
       </form>
     </div>

@@ -6,6 +6,7 @@ const Purpose = () => {
       const {setStep , data , setData} = useContext(multiStepContext)
     
       const handleSelectChange = (e) => {
+        
          setData({
             ...data,
             Purpose: e.target.value,
@@ -16,7 +17,7 @@ const Purpose = () => {
     <div>
       <form onSubmit={()=>setStep(3)}>
       <h1>What do you need this loan for?</h1>
-      <select value={data} onChange={handleSelectChange} required>
+      <select value={data.Purpose} onChange={handleSelectChange} required>
           <option value="">-- Select an option --</option>
           <option value="Business Growth%">Business Growth%</option>
           <option value="Additional Cashflow">Additional Cashflow</option>

@@ -16,7 +16,7 @@ const BusinessAge = () => {
       <form onSubmit={()=>setStep(5)}>
       <h1>How long you've been trading for?</h1>
       <label>Business Age</label><br />
-      <select value={data} onChange={handleSelectChange} required>
+      <select value={data.businessage} onChange={handleSelectChange} required>
           <option value="">-- Select an option --</option>
           <option value="1<">Less than 1 year</option>
           <option value="2">2 years</option>

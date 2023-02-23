@@ -4,7 +4,6 @@ import { multiStepContext } from './StepContext';
 
 const PropertyValue = () => {
 
-  const [inp, setInp] = useState([]);
   const {setStep , data , setData} = useContext(multiStepContext)
 
   function handleKeyDown(event) {
@@ -22,16 +21,15 @@ const PropertyValue = () => {
          <input
          id="standard-adornment-amount"
          type="number"
-         value={inp}
+         value={data.Propvalue}
          inputMode="numeric"
          required
          onKeyDown={handleKeyDown}
          onChange={(e) => {
            if (e.target.value.length <= 10 && e.target.value >= 0) {
-             setInp(e.target.value);
              setData({
                ...data,
-               propvalue: e.target.value,
+               Propvalue: e.target.value,
              });
            }
          }}></input><br />

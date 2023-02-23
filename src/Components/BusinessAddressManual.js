@@ -5,11 +5,6 @@ import { multiStepContext } from './StepContext'
 const BusinessAddressManual = () => {
 
    const {setStep , data , setData} = useContext(multiStepContext)
-   const [inp, setInp] = useState([]);
-   const [inp2, setInp2] = useState([]);
-   const [inp3, setInp3] = useState([]);
-   const [inp4, setInp4] = useState([]);
-   const [inp5, setInp5] = useState([]);
 
    function handleKeyDown(event) {
       // Check if the key pressed is a number or backspace
@@ -26,13 +21,12 @@ const BusinessAddressManual = () => {
               id="standard-adornment-amount" 
               type="number" 
               onKeyDown={handleKeyDown}
-              value={inp}
+              value={data.BusinessPostcode}
               onChange={(e) => {
                 if (e.target.value >= 0 && e.target.value.length <= 6 ) {
-                  setInp(e.target.value);
                   setData({
                     ...data,
-                    postcode: e.target.value,
+                    BusinessPostcode: e.target.value,
                   });
                 }
               }}
@@ -45,13 +39,13 @@ const BusinessAddressManual = () => {
               label="House Number"
               variant="standard"
               onKeyDown={handleKeyDown}
-              value={inp2}
+              value={data.Businesshouseno}
               onChange={(e) => {
                 if (e.target.value.length <= 4 && e.target.value >= 0 ) {
-                  setInp2(e.target.value);
+                  
                   setData({
                     ...data,
-                    houseno: e.target.value,
+                    Businesshouseno: e.target.value,
                   });
                 }
               }}
@@ -63,13 +57,12 @@ const BusinessAddressManual = () => {
               label="Flat Number (Optional)"
               variant="standard"
               onKeyDown={handleKeyDown}
-              value={inp3}
+              value={data.Businessflatno}
               onChange={(e) => {
                 if (e.target.value.length <= 4 && e.target.value >= 0) {
-                  setInp3(e.target.value);
                   setData({
                     ...data,
-                    flatno: e.target.value,
+                    Businessflatno: e.target.value,
                   });
                 }
               }}
@@ -80,12 +73,30 @@ const BusinessAddressManual = () => {
               label="House Name (Optional)"
               variant="standard"
               placeholder='House Name (Optional)'
+              value={data.BusinessHousename}
+              onChange={(e) => {
+                if (e.target.value.length <= 4 && e.target.value >= 0) {
+                  setData({
+                    ...data,
+                    BusinessHousename: e.target.value,
+                  });
+                }
+              }}
             /> <br />
             <input
               id="standard-basic"
               label="Street"
               variant="standard"
               placeholder='Street'
+              value={data.BusinessStreet}
+              onChange={(e) => {
+                if (e.target.value.length <= 4 && e.target.value >= 0) {
+                  setData({
+                    ...data,
+                    BusinessStreet: e.target.value,
+                  });
+                }
+              }}
               required
             /> <br />
             <input
@@ -94,6 +105,15 @@ const BusinessAddressManual = () => {
               variant="standard"
               placeholder = 'Country/District'
               required
+              value={data.BusinessCountry}
+              onChange={(e) => {
+                if (e.target.value.length <= 4 && e.target.value >= 0) {
+                  setData({
+                    ...data,
+                    BusinessCountry: e.target.value,
+                  });
+                }
+              }}
             /> <br />
             <input
               id="standard-basic"
@@ -101,6 +121,15 @@ const BusinessAddressManual = () => {
               variant="standard"
               placeholder = 'City'
               required
+              value={data.BusinessCity}
+              onChange={(e) => {
+                if (e.target.value.length <= 4 && e.target.value >= 0) {
+                  setData({
+                    ...data,
+                    BusinessCity: e.target.value,
+                  });
+                }
+              }}
             /> <br />
             <label mt={4} variant="subtitle1">
               Time At This Adress *
@@ -112,13 +141,12 @@ const BusinessAddressManual = () => {
               variant="standard"
               placeholder="Years"
               onKeyDown={handleKeyDown}
-              value={inp4}
+              value={data.Businessageyears}
               onChange={(e) => {
                 if (e.target.value.length <= 2 && e.target.value < 50 && e.target.value >= 0) {
-                  setInp4(e.target.value);
                   setData({
                     ...data,
-                    houseno: e.target.value,
+                    Businessageyears: e.target.value,
                   });
                 }
               }}
@@ -129,14 +157,13 @@ const BusinessAddressManual = () => {
               id="standard-basic"
               label="Months"
               variant="standard"
-              value={inp5}
+              value={data.Businessagemonths}
               onKeyDown={handleKeyDown}
               onChange={(e) => {
                 if (e.target.value.length <= 2 && e.target.value <= 11 && e.target.value >= 0) {
-                  setInp5(e.target.value);
                   setData({
                     ...data,
-                    houseno: e.target.value,
+                    Businessagemonths: e.target.value,
                   });
                 }
               }}

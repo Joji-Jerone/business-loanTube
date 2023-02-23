@@ -5,7 +5,6 @@ import { multiStepContext } from './StepContext'
 const BusinessNameManual = () => {
 
   const {setStep , data , setData} = useContext(multiStepContext)
-  const [inp, setInp] = useState([]);
 
   const handleKeyPress = (e) => {
     const re = /^[a-zA-Z\s-.]*$/;
@@ -15,7 +14,6 @@ const BusinessNameManual = () => {
   };
 
   const handleChange = (e) => {
-    setInp(e.target.value);
     setData({
       ...data,
       Business: e.target.value,
@@ -32,7 +30,7 @@ const BusinessNameManual = () => {
       id="standard-adornment-amount"
       type="text"
       name = "Business Name"
-      value={inp}
+      value={data.Business}
       required   
       onKeyDown={handleKeyPress}
       onChange={handleChange}

@@ -4,7 +4,6 @@ import { multiStepContext } from './StepContext'
 const BusinessName = () => {
 
   const {setStep , data , setData} = useContext(multiStepContext)
-  const [inp, setInp] = useState("")
 
   const handleKeyPress = (e) => {
     const re = /^[a-zA-Z\s-.]*$/;
@@ -14,7 +13,6 @@ const BusinessName = () => {
   };
 
   const handleInputChange = (e) => {
-    setInp(e.target.value)
     setData({
       ...data,
       Business: e.target.value,
@@ -23,7 +21,7 @@ const BusinessName = () => {
 
 
   const handleSubmit = () => {
-    if(inp === "My business isn't listed here"){
+    if(data.Business === "My business isn't listed here"){
       setStep(4) 
     }
     else {
@@ -39,7 +37,7 @@ const BusinessName = () => {
       <input
       type = "text" 
       name = "Business Name"
-      value= {inp}
+      value= {data.Business}
       required
       onKeyDown={handleKeyPress}
       onChange={handleInputChange}> 

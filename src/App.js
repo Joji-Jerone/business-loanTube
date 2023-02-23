@@ -21,7 +21,6 @@ import DirectorAddressmanual from './Components/DirectorAddressmanual';
 import ResidentialStatus from './Components/ResidentialStatus';
 import PropertyValue from './Components/PropertyValue';
 import Email from './Components/Email';
-import Terms from './Components/Terms'
 import {multiStepContext} from './Components/StepContext';
 import BusinessType from './Components/BusinessType';
 import BusinessAge from './Components/BusinessAge';

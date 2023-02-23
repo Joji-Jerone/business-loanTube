@@ -23,27 +23,37 @@ const DirectorAddress = () => {
     }
   };
 
-  const handleChange = (event) => {
-    setData(event.target.value);
+  const handleChange = (e) => {
+    setData({
+      ...data,
+      DirectorAddress: e.target.value,
+    });
   };
   
-  // const handleSelect = (e) => {
-  //   if(value === "yes, with a mortgage" || value ==="yes, without a mortgage" ){
-  //   }
-  // }
+  const handleSubmit = () => {
+    if(data.DirectorAddress === "default"){
+      setStep(16)
+    }else{
+      setStep(17)
+    }
+   }
 
   return (
     <div>
-      <form onSubmit={()=>setStep(16)}>
+      <form onSubmit={handleSubmit}>
       <h1>
       What is your residential address?
       </h1>
-      <input
+      <select
       type = "text" 
-      name = "Business Name"
+      value={data.DirectorAddress}
       required
       onKeyDown={handleKeyPress}
-      onChange={handleChange}></input>
+      onChange={handleChange}>
+       <option value="">-- Select an option --</option>
+        <option value="test">test</option>
+        <option value="default">My address isn't listed here</option>
+        </select>
 
       <br />
         <button onClick={()=>setStep(11)} >Previous</button>

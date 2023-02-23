@@ -4,7 +4,6 @@ import { multiStepContext } from './StepContext'
 const Revenue = () => {
 
   const {setStep , data , setData} = useContext(multiStepContext)
-  const [inp, setInp] = useState([]);
 
   function handleKeyDown(event) {
     // Check if the key pressed is a number or backspace
@@ -22,13 +21,12 @@ const Revenue = () => {
       <input
       id="standard-adornment-amount"
       type="number"
-      value={inp}
+      value={data.Revenue}
       inputMode="numeric"
       required
       onKeyDown={handleKeyDown}
       onChange={(e) => {
         if (e.target.value.length <= 10 && e.target.value >= 0) {
-          setInp(e.target.value)
           setData({
             ...data,
             Revenue: e.target.value,

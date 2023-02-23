@@ -14,7 +14,7 @@ const Mobile = () => {
   }
 
   const handleSubmit = (event) => {
-    if(inp.startsWith("07")){
+    if(data.mobile.startsWith("07") && data.mobile.length === 11){
         setStep(6)
     }
     else {
@@ -31,13 +31,12 @@ const Mobile = () => {
       <input
       id="standard-adornment-amount"
       type="number"
-      value={inp}
+      value={data.mobile}
       inputMode="numeric"
       required
       onKeyDown={handleKeyDown}
       onChange={(e) => {
-        if (e.target.value.length <= 10 && e.target.value >= 0) {
-          setInp(e.target.value);
+        if (e.target.value.length <= 11 && e.target.value >= 0) {
           setData({
             ...data,
             mobile: e.target.value,

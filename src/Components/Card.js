@@ -3,21 +3,21 @@ import { multiStepContext } from './StepContext'
 
 const Card = () => {
   const {setStep , data , setData} = useContext(multiStepContext)
-  const [inp, setInp] = useState("");
+
 
   const handleSelectChange = (e) => {
-    setInp(e.target.value)
+
     setData({
        ...data,
-       cards: e.target.value,
+       Cards: e.target.value,
      });
  };
 
  const handleSubmit = () => {
-  if(inp === "yes"){
+  if(data.Cards === "yes"){
     setStep(81)
   }else{
-    setStep(81)
+    setStep(9)
   }
  }
 
@@ -25,7 +25,7 @@ const Card = () => {
     <div>
       <form onSubmit={handleSubmit}>
       <h1>Does your business accepts card payments?</h1>
-      <select value={data} onSelect={handleSelectChange} required>
+      <select  value = {data.Cards}onChange={handleSelectChange} required>
           <option value="">-- Select an option --</option>
           <option value="yes">Yes</option>
           <option value="no">No</option>

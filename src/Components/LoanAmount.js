@@ -47,7 +47,6 @@ const LoanAmount = () => {
       }}
       >
       </input><br />
-      <button> Previous </button>
       <button 
       type='submit' >Next</button>
       </form>

@@ -12,11 +12,11 @@ const DirectorName = () => {
     if (value === '') {
       setData1([])
     } else {
-      const res = await axios.get(`https://9x2o8zyo78.execute-api.eu-west-2.amazonaws.com?cid=${value}`)
-      
+      const res = await axios.get(`https://9x2o8zyo78.execute-api.eu-west-2.amazonaws.com/?cid=${value}`)
+      console.log(res)
       setData1([...res.data.active_directors, {name : "My name isn't listed here"}])
     }
-  } 
+  }  
 
   function setter(name) {
     //setVal(name)
@@ -36,10 +36,9 @@ const DirectorName = () => {
     });
   }
 
-  const handleKeyPress = (e) => {
-    const re = /^[a-zA-Z\s-.]*$/;
-    if (!re.test(e.key)) {
-      e.preventDefault();
+  const handleKeyPress = (event) => {
+    if (event.keyCode !== 8 && (!/^[0-9]$/.test(event.key))) {
+      event.preventDefault();
     }
   };
 
@@ -61,8 +60,9 @@ const DirectorName = () => {
       <label>if you can't find your name kindly select - " My business isn't listed here "</label><br></br>
         <input type="text" onChange={changeHandler} 
         onKeyDown={handleKeyPress} 
-        value={data.DirectorName}
-        p/>
+        value={data.DirectorName} 
+        placeholder='Company ID'
+        required/>
         <div className="suggestion">
           {data1 && data1.map(e => {
             return <div className="list" key={e.id} onClick={() => setter(e.name)}>

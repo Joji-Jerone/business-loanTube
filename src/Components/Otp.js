@@ -10,11 +10,25 @@ const Otp = () => {
       if (event.keyCode !== 8 && (!/^[0-9]$/.test(event.key))) {
         event.preventDefault();
       }
+    }  
+
+    const handleSubmit = (event) => {
+      event.preventDefault()
+      if(data.otp.length === 4){
+
+        setStep(7)
+      }
+      else {
+        
+        alert("Enter a valid OTP")
+      }
     }
+  
+
   return (
     <div>
       <h1> Mobile Verification </h1>
-      <form onSubmit = {()=>setStep(7)}> 
+      <form onSubmit = {handleSubmit}> 
     <label> `4-digit code | Please enter the code sent to +44 {data.mobile} |`</label><br />
     <input
     id="standard-adornment-amount"

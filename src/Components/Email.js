@@ -4,19 +4,30 @@ import { multiStepContext } from './StepContext'
 const Email = () => {
   const {setStep , data , setData} = useContext(multiStepContext)
 
-  const handleSubmit = () =>{
+  const handleSubmit = (e) =>{
+    e.preventDefault()
     alert("thank you for your response")
+  }
+
+  const handleChange = (e) => {
+    e.preventDefault()
+    setData({
+      ...data,
+      email: e.target.value,
+    })
   }
   return (
     <div>
       <h1>Email</h1>
       <h4> We'll notify you of changes and updates about your application, new products and features.</h4>
       <form onSubmit={handleSubmit}>
-      <label id="standard-adornment-amount"
-         type="email"
-         value= {data}
-         required>Your Email address</label><br />
-      <input></input><br />
+      <label >Your Email address</label><br />
+      <input
+      id="standard-adornment-amount"
+      type="email"
+      value= {data.email}
+      onChange={handleChange}
+      required/>
       <br />
       <p>
          <h3>By pressing Find your loan:</h3>

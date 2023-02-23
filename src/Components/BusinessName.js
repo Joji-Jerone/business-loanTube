@@ -17,6 +17,7 @@ const BusinessName = () => {
     }
   } 
 
+
   function setter(name) {
     //setVal(name)
     setData1([])
@@ -62,6 +63,7 @@ const BusinessName = () => {
       <label>if you can't find your business kindly select - " My business isn't listed here "</label><br></br>
         <input type="text" onChange={changeHandler} 
         onKeyDown={handleKeyPress} 
+        required
         value={data.Business}/>
         <div className="suggestion">
           {data1 && data1.map(e => {
@@ -76,7 +78,7 @@ const BusinessName = () => {
       <button type='submit'>Next</button>
       </form>
     </div>
-  )
+  ) 
 }
 
 export default BusinessName

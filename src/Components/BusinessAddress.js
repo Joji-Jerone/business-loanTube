@@ -26,7 +26,6 @@ async function dropDown(value) {
   }
 
   function changeHandler(e) {
-    //setVal(e.target.value)
     dropDown(e.target.value)
     setData({
       ...data,
@@ -40,14 +39,16 @@ async function dropDown(value) {
       e.preventDefault();
     }
   };
- const handleSubmit = () => {
-  if(data.BusinessAddress === "My address isn't listed here"){
-    setStep(101)
-  }else{
-    setStep(11)
+ const handleSubmit = (e) => {
+      e.preventDefault()
+    if(data.BusinessAddress === "My address isn't listed here"){
+      setStep(101)
+    }
+    else{
+      setStep(11)
   }
- }
-
+  }
+  
   return (
     <div>
       <form onSubmit={handleSubmit}>

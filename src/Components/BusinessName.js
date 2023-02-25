@@ -18,12 +18,13 @@ const BusinessName = () => {
   } 
 
 
-  function setter(name) {
+  function setter(name , id) {
     //setVal(name)
     setData1([])
     setData({
       ...data,
       Business: name,
+      Companyid:id
     });
   }
 
@@ -34,6 +35,7 @@ const BusinessName = () => {
       ...data,
       Business: e.target.value,
     });
+    
   }
 
   const handleKeyPress = (e) => {
@@ -67,7 +69,7 @@ const BusinessName = () => {
         value={data.Business}/>
         <div className="suggestion">
           {data1 && data1.map(e => {
-            return <div className="list" key={e.id} onClick={() => setter(e.name)}>
+            return <div className="list" key={e.id} onClick={() => setter(e.name,e.id)}>
               <p className="title">{e.name}</p>
               {e.id && <p className="address">{e.id} | {e.address}</p>}
             </div>

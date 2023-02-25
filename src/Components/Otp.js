@@ -14,7 +14,8 @@ const Otp = () => {
 
     const handleSubmit = (event) => {
       event.preventDefault()
-      if(data.otp.length === 4){
+      console.log(data.otpgenerated)
+      if(data.otp === data.otpgenerated){
 
         setStep(7)
       }

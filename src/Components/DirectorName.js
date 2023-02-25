@@ -5,14 +5,13 @@ import axios from 'axios'
 const DirectorName = () => {
 
   const {setStep , data , setData} = useContext(multiStepContext)
-
   const [data1, setData1] = useState([])
 
-  async function dropDown(value) {
-    if (value === '') {
+  async function dropDown(Companyid) {
+    if (Companyid === '') {
       setData1([])
     } else {
-      const res = await axios.get(`https://9x2o8zyo78.execute-api.eu-west-2.amazonaws.com/?cid=${value}`)
+      const res = await axios.get(`https://9x2o8zyo78.execute-api.eu-west-2.amazonaws.com/?cid=${data.Companyid}`)
       console.log(res)
       setData1([...res.data.active_directors, {name : "My name isn't listed here"}])
     }
@@ -72,7 +71,7 @@ const DirectorName = () => {
           })}
         </div>
       </div>
-      <button onClick={()=>setStep(2)}>Previous</button>
+      <button onClick={()=>setStep(10)}>Previous</button>
       <button type='submit'>Next</button>
       </form>
     </div>

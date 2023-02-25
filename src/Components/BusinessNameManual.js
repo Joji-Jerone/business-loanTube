@@ -16,7 +16,7 @@ const BusinessNameManual = () => {
   const handleChange = (e) => {
     setData({
       ...data,
-      Business: e.target.value,
+      BusinessNameManual: e.target.value,
     });
   };
 
@@ -30,7 +30,7 @@ const BusinessNameManual = () => {
       id="standard-adornment-amount"
       type="text"
       name = "Business Name"
-      value={data.Business}
+      value={data.BusinessNameManual}
       required   
       onKeyDown={handleKeyPress}
       onChange={handleChange}

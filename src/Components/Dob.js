@@ -19,13 +19,14 @@ const Dob = () => {
   }
 
     const [selectedDate, setSelectedDate] = useState(null);
+    const dateInput = document.getElementById("date-input");
+
 
   return (
     <div>
       <form onSubmit={()=>setStep(15)}>
       <h1>Your date of birth - DD/MM/YYYY</h1>
       <label>D.O.B</label>
-
       <DatePicker
       selected={selectedDate}
       onChange={date => setSelectedDate(date)}
@@ -36,6 +37,9 @@ const Dob = () => {
       dropdownMode="select"
       maxDate={new Date()}
       filterDate={date => isAbove18Years(date)}/>
+
+      <input type="text" id="date-input" name="date" pattern="\d{2}/\d{2}/\d{4}" placeholder="DD/MM/YYYY" maxlength="10"required />
+
       <button onClick={()=>setStep(13)} >Previous</button>
       <button type='submit' >Next</button>
       </form>

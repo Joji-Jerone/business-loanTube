@@ -28,7 +28,7 @@ import BusinessAge from './Components/BusinessAge';
 function App() {
   const {currentStep} = useContext(multiStepContext)
   function showStep(step) {
-    switch(step) {
+    switch(step) { 
       case 1 : return <LoanAmount />
       case 2 : return <Purpose />
       case 3 : return <BusinessName />

@@ -6,40 +6,91 @@ import 'react-datepicker/dist/react-datepicker.css';
 const Dob = () => {
 
   const {setStep , data , setData} = useContext(multiStepContext)
+  const [date, setDate] = useState("");
 
-  function isAbove18Years(date) {
-    const today = new Date();
-    const diffInYears = today.getFullYear() - date.getFullYear();
-    if (diffInYears > 18) {
-      return true;
-    } else if (diffInYears === 18) {
-      return today.getMonth() >= date.getMonth() && today.getDate() >= date.getDate();
+  function handleDateChange(event) {
+    const { value } = event.target;
+    const inputLength = value.length;
+    let formattedDate = value;
+
+    if (
+      (inputLength === 2 && !value.includes("/")) ||
+      (inputLength === 5 && value.slice(-1) !== "/")
+    ) {
+      formattedDate = `${value}/`;
     }
-    return false;
+
+    // Remove forward slashes from the input value
+    formattedDate = formattedDate.replace(/\//g, "");
+
+    // Add forward slashes to the input value in the correct places
+    if (formattedDate.length > 2) {
+      formattedDate = `${formattedDate.slice(0, 2)}/${formattedDate.slice(
+        2,
+        4
+      )}/${formattedDate.slice(4, 8)}`;
+    } else if (formattedDate.length > 4) {
+      formattedDate = `${formattedDate.slice(0, 2)}/${formattedDate.slice(
+        2,
+        4
+      )}/${formattedDate.slice(4, formattedDate.length)}`;
+    }
+
+    setData(formattedDate);
+    setData({
+      ...data,
+      dob: formattedDate,
+    });
+    console.log(data.dob)
+  }
+   
+  function checkAge(dob) {
+    const today = new Date();
+    const birthDate = new Date(dob);
+    const age = today.getFullYear() - birthDate.getFullYear();
+    
+    const isOldEnough = age >= 18;
+    let hasPermission = isOldEnough; // declaring with let instead of const
+    
+    hasPermission = true; // reassigning value to variable declared with let
+    
+    return hasPermission;
   }
 
-    const [selectedDate, setSelectedDate] = useState(null);
-    const dateInput = document.getElementById("date-input");
+  const handleSubmit = (event) => {
+    event.preventDefault(); // prevent form submission
 
+    // split the dob string into day, month, and year components
+    const [day, month, year] = data.dob.split('/');
+
+    // create a Date object from the day, month, and year components
+    const birthDate = new Date(`${month}/${day}/${year}`);
+
+    // calculate age in years
+    const age = (new Date()).getFullYear() - birthDate.getFullYear();
+
+    if (age >= 18) {
+      setStep(15)
+    } else {
+      alert("Enter a valid DOB")
+    }
+  };
 
   return (
     <div>
-      <form onSubmit={()=>setStep(15)}>
+      <form onSubmit={handleSubmit}>
       <h1>Your date of birth - DD/MM/YYYY</h1>
-      <label>D.O.B</label>
-      <DatePicker
-      selected={selectedDate}
-      onChange={date => setSelectedDate(date)}
-      dateFormat="dd/MM/yyyy"
-      peekNextMonth
-      showMonthDropdown
-      showYearDropdown
-      dropdownMode="select"
-      maxDate={new Date()}
-      filterDate={date => isAbove18Years(date)}/>
-
-      <input type="text" id="date-input" name="date" pattern="\d{2}/\d{2}/\d{4}" placeholder="DD/MM/YYYY" maxlength="10"required />
-
+      <input
+        type="text"
+        id="date-input"
+        name="date"
+        placeholder="DD/MM/YYYY"
+        pattern="\d{2}/\d{2}/\d{4}"
+        maxLength="10"
+        value={data.dob}
+        onChange={handleDateChange}
+        required
+      />
       <button onClick={()=>setStep(13)} >Previous</button>
       <button type='submit' >Next</button>
       </form>

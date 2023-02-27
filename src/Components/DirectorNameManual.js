@@ -6,7 +6,7 @@ const DirectorNameManual = () => {
   const {setStep , data , setData} = useContext(multiStepContext)
 
   const handleKeyPress = (e) => {
-    const re = /^[a-zA-Z\s-.]*$/;
+    const re = /^[a-zA-Z\s-]*$/;
     if (!re.test(e.key)) {
       e.preventDefault();
     }

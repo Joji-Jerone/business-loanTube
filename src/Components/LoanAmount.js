@@ -21,7 +21,7 @@ const LoanAmount = () => {
       e.preventDefault()
       alert("Enter amount between £5,000 and £5,000,000")
     }
-  }
+  } 
 
   return (
     <div>

@@ -26,28 +26,33 @@ async function dropDown(value) {
   }
 
   function changeHandler(e) {
+   
     dropDown(e.target.value)
     setData({
       ...data,
       BusinessAddress: e.target.value,
     });
+ 
   }
 
   const handleKeyPress = (e) => {
-    const re = /^[a-zA-Z\s-.0-9]*$/;
+    const re = /^[a-zA-Z\s0-9]*$/;
     if (!re.test(e.key)) {
       e.preventDefault();
     }
   };
+
  const handleSubmit = (e) => {
       e.preventDefault()
-    if(data.BusinessAddress === "My address isn't listed here"){
-      setStep(101)
-    }
-    else{
-      setStep(11)
+      if(data.BusinessAddress === "My address isn't listed here")
+      {
+            setStep(101)
+          }
+          else{
+            setStep(11)
+        }
   }
-  }
+  
   
   return (
     <div>

@@ -21,3 +21,44 @@ const dataModal = {
    email: "",
 
 }
+
+//Postcode value 
+
+import React, { useState } from 'react';
+
+function UKPostCodeValidator() {
+  const [postcode, setPostcode] = useState('');
+
+  // Function to validate UK postcode
+  function isUKPostCode(postcode) {
+    const regex = /^[A-Za-z]{1,2}\d{1,2}[A-Za-z]?\s?\d[A-Za-z]{2}$/;
+    return regex.test(postcode);
+  }
+
+  function handleInputChange(event) {
+    setPostcode(event.target.value);
+  }
+
+  function handleFormSubmit(event) {
+    event.preventDefault();
+    if (isUKPostCode(postcode)) {
+      console.log(true);
+    } else {
+      console.log(false);
+    }
+  }
+
+  return (
+    <div>
+      <form onSubmit={handleFormSubmit}>
+        <label>
+          Enter UK postcode:
+          <input type="text" value={postcode} onChange={handleInputChange} />
+        </label>
+        <button type="submit">Validate</button>
+      </form>
+    </div>
+  );
+}
+
+export default UKPostCodeValidator;

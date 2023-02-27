@@ -1,4 +1,4 @@
-import React ,{ useState , useContext} from 'react';
+import React ,{ useState , useContext , useEffect} from 'react';
 import { multiStepContext } from './StepContext'
 import axios from 'axios'
 
@@ -6,15 +6,15 @@ const DirectorName = () => {
 
   const {setStep , data , setData} = useContext(multiStepContext)
   const [data1, setData1] = useState([])
+  useEffect(() => {
+    dropDown()
+  }, [])
 
-  async function dropDown(Companyid) {
-    if (Companyid === '') {
-      setData1([])
-    } else {
-      const res = await axios.get(`https://9x2o8zyo78.execute-api.eu-west-2.amazonaws.com/?cid=${data.Companyid}`)
-      console.log(res)
-      setData1([...res.data.active_directors, {name : "My name isn't listed here"}])
-    }
+
+  async function dropDown() {
+    const res = await axios.get(`https://9x2o8zyo78.execute-api.eu-west-2.amazonaws.com/?cid=${data.Companyid}`)
+    console.log(res)
+    setData1([...res.data.active_directors, {name : "My name isn't listed here"}])
   }  
 
   function setter(name) {
@@ -23,15 +23,6 @@ const DirectorName = () => {
     setData({
       ...data,
       DirectorName: name,
-    });
-  }
-
-  function changeHandler(e) {
-    //setVal(e.target.value)
-    dropDown(e.target.value)
-    setData({
-      ...data,
-      DirectorName: e.target.value,
     });
   }
 
@@ -57,7 +48,7 @@ const DirectorName = () => {
       </label>
       <div className="container">
       <label>if you can't find your name kindly select - " My business isn't listed here "</label><br></br>
-        <input type="text" onChange={changeHandler} 
+        <input type="text"
         onKeyDown={handleKeyPress} 
         value={data.DirectorName} 
         placeholder='Company ID'
